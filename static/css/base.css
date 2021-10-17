@@ -1,0 +1,28 @@
+.logo {
+  height: 100px;
+  width: 350px;
+}
+
+@media (max-width: 874px) {
+  .card-columns {
+      column-count: 1;
+  }
+}
+
+@media (min-width: 875px) {
+  .card-columns {
+      column-count: 2;
+  }
+}
+
+@media (min-width: 880px) {
+  .card-columns {
+      column-count: 3;
+  }
+}
+
+@media (min-width: 1200px) {
+  .card-columns {
+      column-count: 4;
+  }
+}
