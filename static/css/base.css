@@ -3,26 +3,50 @@
   width: 350px;
 }
 
+.icons1 {
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.profile-btn {
+  background: none !important;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+}
+
+.profile-btn:hover{
+  color: black;
+}
+
+.icon{
+  margin-right: 10px;
+}
+
 @media (max-width: 874px) {
   .card-columns {
-      column-count: 1;
+    column-count: 1;
   }
 }
 
 @media (min-width: 875px) {
   .card-columns {
-      column-count: 2;
+    column-count: 2;
   }
 }
 
 @media (min-width: 880px) {
   .card-columns {
-      column-count: 3;
+    column-count: 3;
   }
 }
 
 @media (min-width: 1200px) {
   .card-columns {
-      column-count: 4;
+    column-count: 4;
   }
 }

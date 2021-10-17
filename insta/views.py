@@ -1,6 +1,8 @@
 from django.shortcuts import render
 
+
 def index(request):
-    return render(request, "index.html")
-
-
+    follows = ['peterthitu', 'gathu', 'kieya', 'alice', 'mary']
+    posts = [{'username': 'hwaruguru', 'imageurl': 'static/images/lamb.jpeg', 'likes': 10, 'text': 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.', 'comments': [{'username': 'grace', 'comment': 'great'}, {'username': 'denno', 'comment': 'Well done 👏 you deserve it'}, {'username': 'wangari', 'comment': 'aii Njeri'}], 'date': 20}, {'username': 'hwaruguru', 'imageurl': 'static/images/lamb.jpeg', 'likes': 10, 'text': 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
+                                                                                                                                                                                                                                                                                                                                                                                                                               'comments': [{'username': 'grace', 'comment': 'great'}, {'username': 'denno', 'comment': 'Well done 👏 you deserve it'}, {'username': 'wangari', 'comment': 'aii Njeri'}], 'date': 20}, {'username': 'hwaruguru', 'imageurl': 'static/images/lamb.jpeg', 'likes': 10, 'text': 'This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.', 'comments': [{'username': 'grace', 'comment': 'great'}, {'username': 'denno', 'comment': 'Well done 👏 you deserve it'}, {'username': 'wangari', 'comment': 'aii Njeri'}], 'date': 20}]
+    return render(request, "index.html", {"posts": posts, "follows": follows})

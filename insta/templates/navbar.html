@@ -1,59 +1,52 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
-      integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1">
-          <a href="/">
-            <div class="navbar-header">
-              <a class="navbar-brand" href="/">Instagram</a>
-            </div>
-          </a>
-        </span>
-        <!-- Adding a search form  -->
-        <form class="mb-0 h1 ml-auto mr-auto" id="searchform" action="">
-          <input
-            name="search_user"
-            autocomplete="off"
-            id="searching"
-            class="form-control d-none d-md-block"
-            placeholder="Search"
-          />
-          <i class="spinner"></i>
-        </form>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 
-        <!-- search form end -->
-        <span class="pull-right">
-          <i class="fas fa-house-user"></i>
-          <i class="fab fa-facebook-messenger"></i>
-          <i class="far fa-compass"></i>
-          <i class="far fa-heart"></i>
-          <div class="instaicon like"></div>
-          <div class="btn-group">
-            <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="far fa-user-circle"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#"> <i class="far fa-user-circle"></i>Profile</a>
-                <a class="dropdown-item" href="#"><i class="far fa-bookmark"></i>Saved</a>
-                <a class="dropdown-item" href="#"><i class="fas fa-cog"></i>Settings</a>
-                <a class="dropdown-item" href="#"><i class="fas fa-sync"></i>Switch Accounts</a>
-            </div>
-          <a href="" class="instaicon pers"></a>
-        </span>
-      </div>
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">
+                <a href="/">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="/">Instagram</a>
+                    </div>
+                </a>
+            </span>
+            <!-- Adding a search form  -->
+            <form class="mb-0 h1 ml-auto mr-auto" id="searchform" action="">
+                <input name="search_user" autocomplete="off" id="searching" class="form-control d-none d-md-block"
+                    placeholder="Search" />
+                <i class="spinner"></i>
+            </form>
+
+            <!-- search form end -->
+            <span class="pull-right icons1">
+                <i class="fas fa-house-user"></i>
+                <i class="fab fa-facebook-messenger"></i>
+                <i class="far fa-compass"></i>
+                <i class="far fa-heart"></i>
+                <div class="btn-group">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle profile-btn" type="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <i class="far fa-user-circle"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#"> <i class="far fa-user-circle icon"></i>Profile</a>
+                        <a class="dropdown-item" href="#"><i class="far fa-bookmark icon"></i>Saved</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-cog icon"></i>Settings</a>
+                        <a class="dropdown-item" href="#"><i class="fas fa-sync icon"></i>Switch Accounts</a>
+                    </div>
+                </div>
+            </span>
+        </div>
     </nav>
-  </body>
+</body>
 </html>

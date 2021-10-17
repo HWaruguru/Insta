@@ -1,10 +1,58 @@
-{%extends 'base.html'%}
-{% block content %}
-{{ block.super}}
+{%extends 'base.html'%} {% block content %} {{ block.super}}
 
-<div class="container-fluid">
-  <div class="card-columns">
-    
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      {% for post in posts %}
+      <div class="card">
+        <p class="card-title"><strong>{{ post.username }}</strong></p>
+        <img
+          class="card-img-top"
+          src="{{post.imageurl}}"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <p class="card-title"><strong>{{ post.likes }} likes</strong></p>
+          <p class="card-title">
+            <strong>{{ post.username }}</strong> {{post.text}}
+          </p>
+          <a
+            ><p class="card-text">
+              <small class="text-muted"
+                >View all {{ post.comments|length }} comments</small
+              >
+            </p></a
+          >
+          {% for comment in post.comments|slice:":2" %}
+          <p class="card-title">
+            <strong>{{ comment.username }} </strong> {{comment.comment}}
+          </p>
+          {% endfor %}
+          <p class="card-text">
+            <small class="text-muted">{{post.date}} HOURS AGO</small>
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    <div class="col-sm-4">
+      <h5><i class="far fa-user-circle"></i>Hwaruguru</h5>
+      {% for follow in follows %}
+      <ul class="list-group">
+        <li
+          class="
+            list-group-item
+            d-flex
+            justify-content-between
+            align-items-center
+          "
+        >
+          {{ follow }}
+          <span class="badge badge-primary badge-pill">follow</span>
+        </li>
+      </ul>
+      {% endfor %}
+    </div>
   </div>
 </div>
 {% endblock %}
