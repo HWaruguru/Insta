@@ -1,35 +1,39 @@
-{%extends 'base.html'%} {% block content %} {{ block.super}}
-
+{%extends 'base.html'%}
+{% load humanize %}
+{% block content %} 
+{{ block.super}}
 <div class="container">
   <div class="row">
     <div class="col-sm-8">
       {% for post in posts %}
       <div class="card">
-        <p class="card-title"><strong>{{ post.username }}</strong></p>
+        <p class="card-title"><strong>{{ post.profile.user.username }}</strong></p>
         <img
           class="card-img-top"
-          src="{{post.imageurl}}"
+          src="{{post.image}}"
           alt="Card image cap"
         />
         <div class="card-body">
-          <p class="card-title"><strong>{{ post.likes }} likes</strong></p>
+          <p class="card-title"><strong>{{ post.total_likes }} likes</strong></p>
           <p class="card-title">
-            <strong>{{ post.username }}</strong> {{post.text}}
+            <strong>{{ post.profile.user.username}}</strong> {{post.caption}}
           </p>
+          {% if post.get_all_comments %}
           <a
             ><p class="card-text">
               <small class="text-muted"
-                >View all {{ post.comments|length }} comments</small
+                >View all {{ post.get_all_comments|length }} comments</small
               >
-            </p></a
-          >
-          {% for comment in post.comments|slice:":2" %}
+            </p></a>
+          {% endif %}
+          
+          {% for comment in post.comments.all|slice:":2" %}
           <p class="card-title">
-            <strong>{{ comment.username }} </strong> {{comment.comment}}
+            <strong>{{ comment.profile.user.username }} </strong> {{comment.comment}}
           </p>
           {% endfor %}
           <p class="card-text">
-            <small class="text-muted">{{post.date}} HOURS AGO</small>
+            <small class="text-muted">{{post.created|naturaltime}}</small>
           </p>
         </div>
       </div>
