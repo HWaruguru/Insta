@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns=[
+    url(r'^admin/', admin.site.urls),
     url('^$', views.index, name = 'index'),
 ]
 if settings.DEBUG:
