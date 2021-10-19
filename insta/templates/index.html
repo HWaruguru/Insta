@@ -10,7 +10,7 @@
         <p class="card-title"><strong>{{ post.profile.user.username }}</strong></p>
         <img
           class="card-img-top"
-          src="{{post.image}}"
+          src="/media/{{post.image}}"
           alt="Card image cap"
         />
         <div class="card-body">
@@ -40,7 +40,7 @@
       {% endfor %}
     </div>
     <div class="col-sm-4">
-      <h5><i class="far fa-user-circle"></i>Hwaruguru</h5>
+      <h5><i class="far fa-user-circle"></i> {{user.username}}</h5>
       {% for follow in follows %}
       <ul class="list-group">
         <li

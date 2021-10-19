@@ -8,10 +8,11 @@ from . import views
 
 urlpatterns=[
     url(r'^admin/', admin.site.urls),
-    url('^$', views.index, name = 'index'),
+    url(r'^$', views.index, name = 'index'),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     url( r'^login/$',auth_views.LoginView.as_view(template_name="useraccounts/login.html"), name="login"),
     url(r'^logout/$', auth_views.logout, {"next_page": '/'}), 
+    url(r'^profile/$', views.profile, name='profile'),
 ] 
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
