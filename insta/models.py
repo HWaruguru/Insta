@@ -54,14 +54,13 @@ class Post(models.Model):
 
     def delete_image(self):
         self.delete()
+
     @property
     def total_likes(self):
         return self.likes.count()
 
     def __str__(self):
         return f'{self.caption} Post'
-
-
 
 class Comment(models.Model):
     comment = models.TextField()
@@ -81,3 +80,6 @@ class Follow(models.Model):
 
     def __str__(self):
         return f'{self.follower} Follow'
+
+    class Meta:
+        unique_together = ('follower', 'followed')

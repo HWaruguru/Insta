@@ -1,20 +1,55 @@
-{%extends 'base.html'%}
+{%  extends 'base.html'%}
 {% load humanize %}
+{% load crispy_forms_tags %}
 {% block content %} 
 {{ block.super}}
 <div class="container">
   <div class="row">
     <div class="col-sm-8">
+    <button class="btn btn-sm btn-outline-primary ml-4 mb-3" data-toggle="modal" data-target="#imageUpload">
+        Upload Image
+    </button>
+    <div class="modal fade" id="imageUpload" tabindex="-1" role="dialog"
+         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Image Upload</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post" enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button class="btn btn-sm btn-success">Upload</button>
+                        <button type="button" class="btn btn-sm btn-outline-danger" data-dismiss="modal">
+                            Close
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
       {% for post in posts %}
       <div class="card">
         <p class="card-title"><strong>{{ post.profile.user.username }}</strong></p>
-        <img
+        <a href="/post/{{post.id}}"><img
           class="card-img-top"
           src="/media/{{post.image}}"
           alt="Card image cap"
         />
+        </a>
         <div class="card-body">
-          <p class="card-title"><strong>{{ post.total_likes }} likes</strong></p>
+          <div class="likes">
+            <span class="card-title"><strong>{{ post.total_likes }} like{{post.total_likes|pluralize}}</strong></span>
+            {% if post in user.likes.all %}
+              <a href="/like/{{post.id}}"><span class="like-icon" style="color: red;"><i class="far fa-heart"></i></span></a>
+            {% else %}
+              <a href="/like/{{post.id}}"><span class="like-icon"><i class="far fa-heart"></i></span></a>
+            {% endif %}
+          </div>
           <p class="card-title">
             <strong>{{ post.profile.user.username}}</strong> {{post.caption}}
           </p>
@@ -22,7 +57,7 @@
           <a
             ><p class="card-text">
               <small class="text-muted"
-                >View all {{ post.get_all_comments|length }} comments</small
+                >View all {{ post.get_all_comments|length }} comment{{post.get_all_comments|pluralize}}</small
               >
             </p></a>
           {% endif %}
@@ -51,10 +86,12 @@
             align-items-center
           "
         >
-          {{ follow }}
-          <span class="badge badge-primary badge-pill">follow</span>
+          {{ follow.user.username }}
+          <a href="/follow/{{follow.id}}" style="color: white !important;"><span class="badge badge-primary badge-pill" style="color: white !important; cursor: pointer;">follow</span></a>
         </li>
       </ul>
+      {% empty %}
+        <p>Great! you have followed everyone.</p>
       {% endfor %}
     </div>
   </div>

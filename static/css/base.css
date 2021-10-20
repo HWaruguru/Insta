@@ -52,3 +52,13 @@
   }
 }
 
+.likes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.like-icon {
+  font-size: 2rem;
+  color: black;
+}
