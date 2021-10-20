@@ -1,10 +1,14 @@
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
+
+from insta.email import send_welcome_email
 from .models import Post, Comment, Profile, Follow
-from insta.forms import CommentForm, PostForm, UpdateUserForm, UpdateUserProfileForm
+from insta.forms import CommentForm, PostForm, SignUpForm, UpdateUserForm, UpdateUserProfileForm
+
 
 @login_required(login_url='/accounts/login/')
 def index(request):
@@ -73,3 +77,18 @@ def like(request, post_id):
         else:
             post.likes.add(request.user)
     return redirect('index')
+
+def signup(request):
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            send_welcome_email(user.username, user.email)
+
+            return redirect('index')
+    else:
+        form = SignUpForm()
+    return render(request, 'registration/registration_form.html', {'form': form})
