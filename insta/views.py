@@ -14,15 +14,20 @@ from insta.forms import CommentForm, PostForm, SignUpForm, UpdateUserForm, Updat
 def index(request):
     followers = Follow.objects.filter(follower=request.user.profile)
     follows = Profile.objects.exclude(id__in=[follower.followed.id for follower in followers]).exclude(id=request.user.profile.id)[:5]
-    posts = Post.objects.select_related().all()
+    posts = Post.objects.all()
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
+            print('\n\n')
+            print(post)
+            print('\n\n')
             post.profile = request.user.profile
             post.save()
+            print("Hello, Hellooo, who is here.!")
             return HttpResponseRedirect(request.path_info)
     else:
+        print("This form does not work!")
         form = PostForm()
 
     return render(request, "index.html", {"posts": posts, "follows": follows, "form": form})
@@ -92,3 +97,13 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'registration/registration_form.html', {'form': form})
+
+
+@login_required(login_url='login')
+def search_posts(request):
+    if 'user' in request.GET and request.GET['user']:
+        username = request.GET.get("user")
+        posts = Post.objects.filter(profile__user__username__icontains=username)
+        if len(posts) > 0:
+            return render(request, 'search_result.html', {"posts": posts})
+    return redirect('index')

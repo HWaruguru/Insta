@@ -16,7 +16,8 @@ urlpatterns=[
     url(r'^profile/$', views.profile, name='profile'),
     url(r'^post/(?P<post_id>\d+)/$', views.post, name='post'),
     url(r'^follow/(?P<followed_id>\d+)/$', views.follow, name='follow'),
-    url(r'^like/(?P<post_id>\d+)/$', views.like, name='like')
+    url(r'^like/(?P<post_id>\d+)/$', views.like, name='like'),
+    url(r'^search/$', views.search_posts, name='search_posts')
 ] 
 if settings.DEBUG:
     urlpatterns+= static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

@@ -20,8 +20,8 @@
                 </a>
             </span>
             <!-- Adding a search form  -->
-            <form class="mb-0 h1 ml-auto mr-auto" id="searchform" action="">
-                <input name="search_user" autocomplete="off" id="searching" class="form-control d-none d-md-block"
+            <form class="mb-0 h1 ml-auto mr-auto" id="searchform" action="{% url 'search_posts' %}">
+                <input name="user" autocomplete="off" id="searching" class="form-control d-none d-md-block"
                     placeholder="Search" />
                 <i class="spinner"></i>
             </form>

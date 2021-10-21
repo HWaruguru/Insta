@@ -1,0 +1,52 @@
+{%  extends 'base.html'%}
+{% load humanize %}
+{% block content %} 
+{{ block.super}}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8">
+      {% for post in posts %}
+      <div class="card">
+        <p class="card-title"><strong>{{ post.profile.user.username }}</strong></p>
+        <a href="/post/{{post.id}}"><img
+          class="card-img-top"
+          src="/media/{{post.image}}"
+          alt="Card image cap"
+        />
+        </a>
+        <div class="card-body">
+          <div class="likes">
+            <span class="card-title"><strong>{{ post.total_likes }} like{{post.total_likes|pluralize}}</strong></span>
+            {% if post in user.likes.all %}
+              <a href="/like/{{post.id}}"><span class="like-icon" style="color: red;"><i class="far fa-heart"></i></span></a>
+            {% else %}
+              <a href="/like/{{post.id}}"><span class="like-icon"><i class="far fa-heart"></i></span></a>
+            {% endif %}
+          </div>
+          <p class="card-title">
+            <strong>{{ post.profile.user.username}}</strong> {{post.caption}}
+          </p>
+          {% if post.get_all_comments %}
+          <a
+            ><p class="card-text">
+              <small class="text-muted"
+                >View all {{ post.get_all_comments|length }} comment{{post.get_all_comments|pluralize}}</small
+              >
+            </p></a>
+          {% endif %}
+          
+          {% for comment in post.comments.all|slice:":2" %}
+          <p class="card-title">
+            <strong>{{ comment.profile.user.username }} </strong> {{comment.comment}}
+          </p>
+          {% endfor %}
+          <p class="card-text">
+            <small class="text-muted">{{post.created|naturaltime}}</small>
+          </p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
