@@ -15,6 +15,7 @@ django-crispy-forms==1.13.0
 django-heroku==0.3.1
 django-registration==2.4.1
 fontawesomefree==5.15.4
+gunicorn==20.1.0
 idna==3.3
 oauthlib==3.1.1
 Pillow==8.4.0
